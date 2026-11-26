@@ -69,6 +69,9 @@ def create_app(config=None):
         visible = tasks
         if status != "all":
             visible = [t for t in tasks if bool(t["done"]) == (status == "completed")]
-        return render_template("index.html", tasks=visible)
+        query = request.args.get("q", "").strip()
+        if query:
+            visible = [t for t in visible if query.casefold() in t["title"].casefold()]
+        return render_template("index.html", tasks=visible, query=query)
 
     return app
