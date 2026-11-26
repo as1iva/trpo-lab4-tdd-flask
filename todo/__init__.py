@@ -25,7 +25,7 @@ def create_app(config=None):
     @app.post("/tasks/<int:task_id>/toggle")
     def toggle_task(task_id):
         task = find_task(task_id)
-        task["done"] = True
+        task["done"] = not task["done"]
         return redirect("/")
 
     @app.get("/")
