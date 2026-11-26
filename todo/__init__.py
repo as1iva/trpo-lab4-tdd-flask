@@ -42,6 +42,11 @@ def create_app(config=None):
     def edit_task(task_id):
         return render_template("edit.html", task=find_task(task_id))
 
+    @app.post("/tasks/<int:task_id>/delete")
+    def delete_task(task_id):
+        tasks.remove(find_task(task_id))
+        return redirect("/")
+
     @app.get("/")
     def index():
         return render_template("index.html", tasks=tasks)
