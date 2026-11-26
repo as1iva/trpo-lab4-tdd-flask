@@ -5,10 +5,13 @@ def create_app(config=None):
     app = Flask(__name__)
     app.config.update(config or {})
     tasks = []
+    next_id = 1
 
     @app.post("/tasks")
     def create_task():
-        tasks.append({"id": len(tasks) + 1, "title": request.form["title"], "done": False})
+        nonlocal next_id
+        tasks.append({"id": next_id, "title": request.form["title"], "done": False})
+        next_id += 1
         return redirect("/")
 
     @app.get("/")
