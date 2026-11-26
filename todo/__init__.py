@@ -9,11 +9,15 @@ def create_app(config=None):
     tasks = []
     next_id = 1
 
-    @app.post("/tasks")
-    def create_task():
+    def validated_title():
         title = request.form.get("title", "").strip()
         if not title or len(title) > MAX_TITLE_LENGTH:
             abort(400)
+        return title
+
+    @app.post("/tasks")
+    def create_task():
+        title = validated_title()
         nonlocal next_id
         tasks.append({"id": next_id, "title": title, "done": False})
         next_id += 1
@@ -31,10 +35,7 @@ def create_app(config=None):
     @app.post("/tasks/<int:task_id>/edit")
     def save_task(task_id):
         task = find_task(task_id)
-        title = request.form.get("title", "").strip()
-        if not title or len(title) > MAX_TITLE_LENGTH:
-            abort(400)
-        task["title"] = title
+        task["title"] = validated_title()
         return redirect("/")
 
     @app.get("/tasks/<int:task_id>/edit")
