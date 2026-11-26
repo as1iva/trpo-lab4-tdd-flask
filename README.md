@@ -96,3 +96,7 @@ todo/__init__.py     фабрика, маршруты, валидация
 - [Тестирование Flask](https://flask.palletsprojects.com/en/stable/testing/)
 - [Фабрики приложений Flask](https://flask.palletsprojects.com/en/stable/patterns/appfactories/)
 - [GitHub Actions для Python](https://docs.github.com/en/actions/tutorials/build-and-test-code/python)
+
+## Комплект отчета
+
+Полная версия отчета с 48 иллюстрациями в DOCX и HTML передана вместе с архивом проекта. В публичном репозитории размещены исходники, тесты и текстовые доказательства; публикация файлов изображений требует отдельного подтверждения. Пути `docs/screenshots/` и `docs/REPORT.html` относятся к полному локальному комплекту из архива.
