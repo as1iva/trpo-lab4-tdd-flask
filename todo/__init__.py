@@ -28,6 +28,10 @@ def create_app(config=None):
         task["done"] = not task["done"]
         return redirect("/")
 
+    @app.get("/tasks/<int:task_id>/edit")
+    def edit_task(task_id):
+        return render_template("edit.html", task=find_task(task_id))
+
     @app.get("/")
     def index():
         return render_template("index.html", tasks=tasks)
