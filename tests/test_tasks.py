@@ -17,3 +17,9 @@ def test_reject_empty_title(client, title):
     response = client.post("/tasks", data={"title": title})
     assert response.status_code == 400
     assert "Задач пока нет" in client.get("/").text
+
+def test_trim_title(client):
+    client.post("/tasks", data={"title": "  Прочитать книгу  "})
+    html = client.get("/").text
+    assert ">Прочитать книгу</span>" in html
+    assert "  Прочитать книгу  " not in html

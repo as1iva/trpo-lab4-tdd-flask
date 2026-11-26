@@ -1,0 +1,5 @@
+def test_trim_title(client):
+    client.post("/tasks", data={"title": "  Прочитать книгу  "})
+    html = client.get("/").text
+    assert ">Прочитать книгу</span>" in html
+    assert "  Прочитать книгу  " not in html

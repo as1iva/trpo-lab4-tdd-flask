@@ -34,5 +34,23 @@
     "red_summary": "1 failed, 1 passed in 0.02s",
     "green_summary": "2 passed in 0.01s",
     "refactor_summary": "2 passed in 0.01s"
+  },
+  {
+    "iteration": 3,
+    "title": "reject empty title",
+    "test": "@pytest.mark.parametrize(\"title\", [\"\", \"   \"])\ndef test_reject_empty_title(client, title):\n    response = client.post(\"/tasks\", data={\"title\": title})\n    assert response.status_code == 400\n    assert \"Задач пока нет\" in client.get(\"/\").text",
+    "description": [
+      "Параметризованный тест проверяет пустую строку и пробелы. Оба запроса ошибочно принимались.",
+      "Введен отказ HTTP 400 до изменения списка.",
+      "Чтение поля формы вынесено в локальную переменную title."
+    ],
+    "started_utc": "2026-11-26T12:27:31.607698+00:00",
+    "duration_seconds": 0.85,
+    "red_commit": "07adc8eb01741b2301c15b05da055ade42756896",
+    "green_commit": "e6d632fb1200f9aa44a3086798d2232292b20568",
+    "refactor_commit": "f8023e305d6b6a1d532ae9312cde7ced27288baa",
+    "red_summary": "2 failed, 2 passed in 0.03s",
+    "green_summary": "4 passed in 0.01s",
+    "refactor_summary": "4 passed in 0.01s"
   }
 ]

@@ -1,0 +1,12 @@
+$ python -m pytest -q --tb=short
+....F                                                                    [100%]
+=================================== FAILURES ===================================
+_______________________________ test_trim_title ________________________________
+tests/test_tasks.py:24: in test_trim_title
+    assert ">Прочитать книгу</span>" in html
+E   assert '>Прочитать книгу</span>' in '<h1>Мои задачи</h1>\n<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>\n<article data-id="1"><span>  Прочитать книгу  </span></article>\n'
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_trim_title - assert '>Прочитать книгу</span>...
+1 failed, 4 passed in 0.03s
+
+EXIT_CODE=1
