@@ -52,5 +52,23 @@
     "red_summary": "2 failed, 2 passed in 0.03s",
     "green_summary": "4 passed in 0.01s",
     "refactor_summary": "4 passed in 0.01s"
+  },
+  {
+    "iteration": 4,
+    "title": "trim title",
+    "test": "def test_trim_title(client):\n    client.post(\"/tasks\", data={\"title\": \"  Прочитать книгу  \"})\n    html = client.get(\"/\").text\n    assert \">Прочитать книгу</span>\" in html\n    assert \"  Прочитать книгу  \" not in html",
+    "description": [
+      "Добавлен тест нормализации названия. Пробелы сохранялись.",
+      "Добавлен strip при сохранении.",
+      "Нормализация перенесена к чтению формы, убрано повторное strip."
+    ],
+    "started_utc": "2026-11-26T12:27:32.457868+00:00",
+    "duration_seconds": 0.87,
+    "red_commit": "a52074758760a94107cba5807a348e7471f9b3c9",
+    "green_commit": "58803f72b280cbb3cca7f846fb3895011d7f1f81",
+    "refactor_commit": "650ed0c987307fdc0f11f388cf2915cfc78ee491",
+    "red_summary": "1 failed, 4 passed in 0.03s",
+    "green_summary": "5 passed in 0.02s",
+    "refactor_summary": "5 passed in 0.02s"
   }
 ]

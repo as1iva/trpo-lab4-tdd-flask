@@ -23,3 +23,9 @@ def test_trim_title(client):
     html = client.get("/").text
     assert ">Прочитать книгу</span>" in html
     assert "  Прочитать книгу  " not in html
+
+def test_title_length_boundary(client):
+    assert client.post("/tasks", data={"title": "я" * 201}).status_code == 400
+    assert "Задач пока нет" in client.get("/").text
+    assert client.post("/tasks", data={"title": "я" * 200}).status_code == 302
+    assert "я" * 200 in client.get("/").text
