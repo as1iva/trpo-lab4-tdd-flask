@@ -48,3 +48,15 @@ def test_edit_form(client):
     assert response.status_code == 200
     assert 'value="Старое название"' in response.text
     assert 'action="/tasks/1/edit"' in response.text
+
+def test_save_edit_and_validate(client):
+    client.post("/tasks", data={"title": "Старое название"})
+    client.post("/tasks/1/toggle")
+    response = client.post("/tasks/1/edit", data={"title": "  Новое название  "})
+    assert response.status_code == 302
+    html = client.get("/").text
+    assert "Новое название" in html and "Старое название" not in html
+    assert 'data-done="1"' in html
+    for title in ["", " " , "x" * 201]:
+        assert client.post("/tasks/1/edit", data={"title": title}).status_code == 400
+    assert "Новое название" in client.get("/").text

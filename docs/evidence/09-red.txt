@@ -1,0 +1,13 @@
+$ python -m pytest -q --tb=short
+.........F                                                               [100%]
+=================================== FAILURES ===================================
+_________________________ test_save_edit_and_validate __________________________
+tests/test_tasks.py:56: in test_save_edit_and_validate
+    assert response.status_code == 302
+E   assert 405 == 302
+E    +  where 405 = <WrapperTestResponse streamed [405 METHOD NOT ALLOWED]>.status_code
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_save_edit_and_validate - assert 405 == 302
+1 failed, 9 passed in 0.05s
+
+EXIT_CODE=1
