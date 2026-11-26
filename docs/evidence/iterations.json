@@ -232,5 +232,23 @@
     "red_summary": "1 failed, 16 passed in 0.08s",
     "green_summary": "17 passed in 0.07s",
     "refactor_summary": "17 passed in 0.07s"
+  },
+  {
+    "iteration": 14,
+    "title": "search tasks",
+    "test": "def test_search_combines_with_status(client):\n    for title in [\"Купить хлеб\", \"Купить молоко\", \"Читать книгу\"]:\n        client.post(\"/tasks\", data={\"title\": title})\n    client.post(\"/tasks/1/toggle\")\n    html = client.get(\"/\", query_string={\"q\": \"  Купить  \", \"status\": \"active\"}).text\n    assert \"Купить молоко\" in html\n    assert \"Купить хлеб\" not in html and \"Читать книгу\" not in html\n    assert \"Задач пока нет\" in client.get(\"/\", query_string={\"q\": \"несуществующая\"}).text",
+    "description": [
+      "Тест комбинирует поиск и статус, проверяет нормализацию запроса и отсутствие совпадений.",
+      "Добавлен регистронезависимый поиск по названию.",
+      "В шаблон вынесена поисковая GET-форма с сохранением запроса."
+    ],
+    "started_utc": "2026-11-26T12:27:41.803431+00:00",
+    "duration_seconds": 1.08,
+    "red_commit": "d1983973891ec4f07916aae272d0a73f5e765ac5",
+    "green_commit": "b8142a9b145001541ebc2c6a8a865afab4223658",
+    "refactor_commit": "d717f202205a2fca61a4eb042797d97803a3f916",
+    "red_summary": "1 failed, 17 passed in 0.10s",
+    "green_summary": "18 passed in 0.09s",
+    "refactor_summary": "18 passed in 0.08s"
   }
 ]

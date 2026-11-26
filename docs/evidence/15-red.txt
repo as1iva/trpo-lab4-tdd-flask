@@ -1,0 +1,15 @@
+$ python -m pytest -q --tb=short
+..................F                                                      [100%]
+=================================== FAILURES ===================================
+_______________________ test_csrf_required_for_mutations _______________________
+tests/test_tasks.py:112: in test_csrf_required_for_mutations
+    assert browser.post("/tasks", data={"title": "Защищенная задача"}).status_code == 400
+E   AssertionError: assert 302 == 400
+E    +  where 302 = <WrapperTestResponse streamed [302 FOUND]>.status_code
+E    +    where <WrapperTestResponse streamed [302 FOUND]> = post('/tasks', data={'title': 'Защищенная задача'})
+E    +      where post = <FlaskClient <Flask 'todo'>>.post
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_csrf_required_for_mutations - AssertionError...
+1 failed, 18 passed in 0.11s
+
+EXIT_CODE=1

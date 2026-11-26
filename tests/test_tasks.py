@@ -103,3 +103,17 @@ def test_search_combines_with_status(client):
     assert "Купить молоко" in html
     assert "Купить хлеб" not in html and "Читать книгу" not in html
     assert "Задач пока нет" in client.get("/", query_string={"q": "несуществующая"}).text
+
+def test_csrf_required_for_mutations(tmp_path):
+    import re
+    from todo import create_app
+    app = create_app({"TESTING": True, "DATABASE": str(tmp_path / "csrf.sqlite3"), "SECRET_KEY": "test-only-key", "CSRF_ENABLED": True})
+    browser = app.test_client()
+    assert browser.post("/tasks", data={"title": "Защищенная задача"}).status_code == 400
+    html = browser.get("/").text
+    token = re.search(r'name="csrf_token" value="([^"]+)"', html).group(1)
+    assert browser.post("/tasks", data={"title": "Защищенная задача", "csrf_token": "wrong"}).status_code == 400
+    assert browser.post("/tasks", data={"title": "Защищенная задача", "csrf_token": token}).status_code == 302
+    for path in ["/tasks/1/edit", "/tasks/1/toggle", "/tasks/1/delete"]:
+        assert browser.post(path, data={"title": "Новое"}).status_code == 400
+    assert "Защищенная задача" in browser.get("/").text
