@@ -1,1 +1,4 @@
-<h1>Мои задачи</h1><p>Задач пока нет</p>
+<h1>Мои задачи</h1>
+<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>
+{% for task in tasks %}<article data-id="{{ task.id }}"><span>{{ task.title }}</span></article>
+{% else %}<p>Задач пока нет</p>{% endfor %}

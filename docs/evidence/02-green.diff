@@ -1,0 +1,35 @@
+diff --git a/todo/__init__.py b/todo/__init__.py
+index 1c7addc..6e6349e 100644
+--- a/todo/__init__.py
++++ b/todo/__init__.py
+@@ -1,11 +1,18 @@
+-from flask import Flask, render_template
++from flask import Flask, render_template, request, redirect
+ 
+ 
+ def create_app(config=None):
+     app = Flask(__name__)
+     app.config.update(config or {})
++    tasks = []
++
++    @app.post("/tasks")
++    def create_task():
++        tasks.append({"id": len(tasks) + 1, "title": request.form["title"], "done": False})
++        return redirect("/")
++
+     @app.get("/")
+     def index():
+-        return render_template("index.html")
++        return render_template("index.html", tasks=tasks)
+ 
+     return app
+diff --git a/todo/templates/index.html b/todo/templates/index.html
+index c588caf..c130657 100644
+--- a/todo/templates/index.html
++++ b/todo/templates/index.html
+@@ -1 +1,4 @@
+-<h1>Мои задачи</h1><p>Задач пока нет</p>
++<h1>Мои задачи</h1>
++<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>
++{% for task in tasks %}<article data-id="{{ task.id }}"><span>{{ task.title }}</span></article>
++{% else %}<p>Задач пока нет</p>{% endfor %}
