@@ -196,5 +196,23 @@
     "red_summary": "4 failed, 11 passed in 0.13s",
     "green_summary": "15 passed in 0.05s",
     "refactor_summary": "15 passed in 0.05s"
+  },
+  {
+    "iteration": 12,
+    "title": "filter task status",
+    "test": "def test_status_filters(client):\n    client.post(\"/tasks\", data={\"title\": \"Активная запись\"})\n    client.post(\"/tasks\", data={\"title\": \"Завершенная запись\"})\n    client.post(\"/tasks/2/toggle\")\n    active = client.get(\"/?status=active\").text\n    completed = client.get(\"/?status=completed\").text\n    assert \"Активная запись\" in active and \"Завершенная запись\" not in active\n    assert \"Завершенная запись\" in completed and \"Активная запись\" not in completed\n    assert \"Активная запись\" in client.get(\"/?status=all\").text\n    assert client.get(\"/?status=unknown\").status_code == 400",
+    "description": [
+      "Проверены активные и выполненные задачи, все записи и неизвестный фильтр. Ранее фильтр игнорировался.",
+      "Добавлена фильтрация по статусу с проверкой допустимых значений.",
+      "Ссылки фильтров вынесены в навигацию списка."
+    ],
+    "started_utc": "2026-11-26T12:27:39.768513+00:00",
+    "duration_seconds": 0.97,
+    "red_commit": "0318b4f69a225225fbb06731ebad841cb6d66b68",
+    "green_commit": "f49ff84bca21c037fd5b5b15bc575933e4d355fd",
+    "refactor_commit": "111a3b48cd74b34dda22115a75c90353fd297a65",
+    "red_summary": "1 failed, 15 passed in 0.07s",
+    "green_summary": "16 passed in 0.05s",
+    "refactor_summary": "16 passed in 0.05s"
   }
 ]

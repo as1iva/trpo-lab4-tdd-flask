@@ -1,0 +1,12 @@
+$ python -m pytest -q --tb=short
+................F                                                        [100%]
+=================================== FAILURES ===================================
+____________________ test_persistence_across_app_instances _____________________
+tests/test_tasks.py:95: in test_persistence_across_app_instances
+    assert "Пережить перезапуск" in html
+E   assert 'Пережить перезапуск' in '<h1>Мои задачи</h1>\n<nav><a href="/?status=all">Все</a> <a href="/?status=active">Активные</a> <a href="/?status=com...t" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>\n<p>Задач пока нет</p>'
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_persistence_across_app_instances - assert 'П...
+1 failed, 16 passed in 0.08s
+
+EXIT_CODE=1

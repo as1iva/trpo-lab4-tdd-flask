@@ -83,3 +83,14 @@ def test_status_filters(client):
     assert "Завершенная запись" in completed and "Активная запись" not in completed
     assert "Активная запись" in client.get("/?status=all").text
     assert client.get("/?status=unknown").status_code == 400
+
+def test_persistence_across_app_instances(tmp_path):
+    from todo import create_app
+    config = {"TESTING": True, "DATABASE": str(tmp_path / "persistent.sqlite3")}
+    first = create_app(config).test_client()
+    first.post("/tasks", data={"title": "Пережить перезапуск"})
+    first.post("/tasks/1/toggle")
+    second = create_app(config).test_client()
+    html = second.get("/").text
+    assert "Пережить перезапуск" in html
+    assert 'data-done="1"' in html
