@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 
 def create_app(config=None):
@@ -6,6 +6,6 @@ def create_app(config=None):
     app.config.update(config or {})
     @app.get("/")
     def index():
-        return "<h1>Мои задачи</h1><p>Задач пока нет</p>"
+        return render_template("index.html")
 
     return app
