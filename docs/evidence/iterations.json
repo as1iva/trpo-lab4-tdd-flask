@@ -88,5 +88,23 @@
     "red_summary": "1 failed, 5 passed in 0.04s",
     "green_summary": "6 passed in 0.02s",
     "refactor_summary": "6 passed in 0.02s"
+  },
+  {
+    "iteration": 6,
+    "title": "complete task",
+    "test": "def test_complete_task(client):\n    client.post(\"/tasks\", data={\"title\": \"Сдать работу\"})\n    assert 'data-done=\"0\"' in client.get(\"/\").text\n    assert client.post(\"/tasks/1/toggle\").status_code == 302\n    assert 'data-done=\"1\"' in client.get(\"/\").text",
+    "description": [
+      "Тест проверяет исходный статус и завершение задачи. В HTML отсутствовал статус.",
+      "Добавлены атрибут data-done, POST переключения и кнопка.",
+      "Поиск задачи вынесен в find_task."
+    ],
+    "started_utc": "2026-11-26T12:27:34.207768+00:00",
+    "duration_seconds": 0.88,
+    "red_commit": "e01a49fadf4f998e81aad29a6f225bd1e7f68bdd",
+    "green_commit": "e589090e5f794de03ca10fd4338dc5b4ff4b6453",
+    "refactor_commit": "4bbed234ad59c0348107ef006ab583cb98ae0a96",
+    "red_summary": "1 failed, 6 passed in 0.04s",
+    "green_summary": "7 passed in 0.02s",
+    "refactor_summary": "7 passed in 0.02s"
   }
 ]

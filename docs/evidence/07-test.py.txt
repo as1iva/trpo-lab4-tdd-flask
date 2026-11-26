@@ -1,0 +1,5 @@
+def test_reopen_task(client):
+    client.post("/tasks", data={"title": "Повторить материал"})
+    client.post("/tasks/1/toggle")
+    client.post("/tasks/1/toggle")
+    assert 'data-done="0"' in client.get("/").text

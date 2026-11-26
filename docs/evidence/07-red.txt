@@ -1,0 +1,15 @@
+$ python -m pytest -q --tb=short
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+_______________________________ test_reopen_task _______________________________
+tests/test_tasks.py:43: in test_reopen_task
+    assert 'data-done="0"' in client.get("/").text
+E   assert 'data-done="0"' in '<h1>Мои задачи</h1>\n<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить...an>Повторить материал</span><form method="post" action="/tasks/1/toggle"><button>Выполнить</button></form></article>\n'
+E    +  where '<h1>Мои задачи</h1>\n<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить...an>Повторить материал</span><form method="post" action="/tasks/1/toggle"><button>Выполнить</button></form></article>\n' = <WrapperTestResponse 339 bytes [200 OK]>.text
+E    +    where <WrapperTestResponse 339 bytes [200 OK]> = get('/')
+E    +      where get = <FlaskClient <Flask 'todo'>>.get
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_reopen_task - assert 'data-done="0"' in '<h1...
+1 failed, 7 passed in 0.04s
+
+EXIT_CODE=1

@@ -35,3 +35,9 @@ def test_complete_task(client):
     assert 'data-done="0"' in client.get("/").text
     assert client.post("/tasks/1/toggle").status_code == 302
     assert 'data-done="1"' in client.get("/").text
+
+def test_reopen_task(client):
+    client.post("/tasks", data={"title": "Повторить материал"})
+    client.post("/tasks/1/toggle")
+    client.post("/tasks/1/toggle")
+    assert 'data-done="0"' in client.get("/").text
