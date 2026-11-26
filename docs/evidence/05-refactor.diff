@@ -1,0 +1,22 @@
+diff --git a/todo/__init__.py b/todo/__init__.py
+index 3e86e14..a3dca09 100644
+--- a/todo/__init__.py
++++ b/todo/__init__.py
+@@ -1,6 +1,8 @@
+ from flask import Flask, render_template, request, redirect, abort
+ 
+ 
++MAX_TITLE_LENGTH = 200
++
+ def create_app(config=None):
+     app = Flask(__name__)
+     app.config.update(config or {})
+@@ -10,7 +12,7 @@ def create_app(config=None):
+     @app.post("/tasks")
+     def create_task():
+         title = request.form.get("title", "").strip()
+-        if not title or len(title) > 200:
++        if not title or len(title) > MAX_TITLE_LENGTH:
+             abort(400)
+         nonlocal next_id
+         tasks.append({"id": next_id, "title": title, "done": False})
