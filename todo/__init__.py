@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, abort
 
 
 def create_app(config=None):
@@ -9,6 +9,8 @@ def create_app(config=None):
 
     @app.post("/tasks")
     def create_task():
+        if not request.form.get("title", "").strip():
+            abort(400)
         nonlocal next_id
         tasks.append({"id": next_id, "title": request.form["title"], "done": False})
         next_id += 1
