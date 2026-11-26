@@ -16,5 +16,23 @@
     "red_summary": "1 failed in 0.02s",
     "green_summary": "1 passed in 0.01s",
     "refactor_summary": "1 passed in 0.01s"
+  },
+  {
+    "iteration": 2,
+    "title": "create task",
+    "test": "def test_create_task(client):\n    response = client.post(\"/tasks\", data={\"title\": \"Изучить TDD\"})\n    assert response.status_code == 302\n    assert response.headers[\"Location\"] == \"/\"\n    assert \"Изучить TDD\" in client.get(\"/\").text",
+    "description": [
+      "Добавлен тест отправки формы, перенаправления и появления названия в HTML. Падение: HTTP 404.",
+      "Добавлен POST /tasks и список задач в памяти.",
+      "Выделен последовательный счетчик идентификаторов."
+    ],
+    "started_utc": "2026-11-26T12:27:30.775726+00:00",
+    "duration_seconds": 0.83,
+    "red_commit": "e92821961ca88f2f8c91524a83a8df871d46c82b",
+    "green_commit": "958990b7b1166d75ef23567407502ae1560b74c8",
+    "refactor_commit": "64029961168167da16a89076872291a610a3746a",
+    "red_summary": "1 failed, 1 passed in 0.02s",
+    "green_summary": "2 passed in 0.01s",
+    "refactor_summary": "2 passed in 0.01s"
   }
 ]

@@ -1,0 +1,19 @@
+$ python -m pytest -q --tb=short
+..FF                                                                     [100%]
+=================================== FAILURES ===================================
+__________________________ test_reject_empty_title[] ___________________________
+tests/test_tasks.py:18: in test_reject_empty_title
+    assert response.status_code == 400
+E   assert 302 == 400
+E    +  where 302 = <WrapperTestResponse streamed [302 FOUND]>.status_code
+_________________________ test_reject_empty_title[   ] _________________________
+tests/test_tasks.py:18: in test_reject_empty_title
+    assert response.status_code == 400
+E   assert 302 == 400
+E    +  where 302 = <WrapperTestResponse streamed [302 FOUND]>.status_code
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_reject_empty_title[] - assert 302 == 400
+FAILED tests/test_tasks.py::test_reject_empty_title[   ] - assert 302 == 400
+2 failed, 2 passed in 0.03s
+
+EXIT_CODE=1

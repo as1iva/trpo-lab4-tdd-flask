@@ -11,3 +11,9 @@ def test_create_task(client):
     assert response.status_code == 302
     assert response.headers["Location"] == "/"
     assert "Изучить TDD" in client.get("/").text
+
+@pytest.mark.parametrize("title", ["", "   "])
+def test_reject_empty_title(client, title):
+    response = client.post("/tasks", data={"title": title})
+    assert response.status_code == 400
+    assert "Задач пока нет" in client.get("/").text
