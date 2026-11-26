@@ -9,11 +9,11 @@ def create_app(config=None):
 
     @app.post("/tasks")
     def create_task():
-        title = request.form.get("title", "")
-        if not title.strip():
+        title = request.form.get("title", "").strip()
+        if not title:
             abort(400)
         nonlocal next_id
-        tasks.append({"id": next_id, "title": title.strip(), "done": False})
+        tasks.append({"id": next_id, "title": title, "done": False})
         next_id += 1
         return redirect("/")
 
