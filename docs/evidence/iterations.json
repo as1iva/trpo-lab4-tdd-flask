@@ -142,5 +142,23 @@
     "red_summary": "1 failed, 8 passed in 0.05s",
     "green_summary": "9 passed in 0.03s",
     "refactor_summary": "9 passed in 0.03s"
+  },
+  {
+    "iteration": 9,
+    "title": "save edited task",
+    "test": "def test_save_edit_and_validate(client):\n    client.post(\"/tasks\", data={\"title\": \"Старое название\"})\n    client.post(\"/tasks/1/toggle\")\n    response = client.post(\"/tasks/1/edit\", data={\"title\": \"  Новое название  \"})\n    assert response.status_code == 302\n    html = client.get(\"/\").text\n    assert \"Новое название\" in html and \"Старое название\" not in html\n    assert 'data-done=\"1\"' in html\n    for title in [\"\", \" \" , \"x\" * 201]:\n        assert client.post(\"/tasks/1/edit\", data={\"title\": title}).status_code == 400\n    assert \"Новое название\" in client.get(\"/\").text",
+    "description": [
+      "Тест требует сохранения нового названия, статуса и отказа при ошибочном вводе. До реализации POST возвращал 405.",
+      "Добавлен POST edit с проверкой данных.",
+      "Общая валидация создания и редактирования вынесена в validated_title."
+    ],
+    "started_utc": "2026-11-26T12:27:36.874846+00:00",
+    "duration_seconds": 0.92,
+    "red_commit": "e8c668371c81aa156ff53f65a884aab84a03e6b0",
+    "green_commit": "c0767912dd941c242625101551eb81af6f5b73ae",
+    "refactor_commit": "8532cf543e946292aa84f4c19527eb1a73926c93",
+    "red_summary": "1 failed, 9 passed in 0.05s",
+    "green_summary": "10 passed in 0.03s",
+    "refactor_summary": "10 passed in 0.03s"
   }
 ]

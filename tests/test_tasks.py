@@ -60,3 +60,11 @@ def test_save_edit_and_validate(client):
     for title in ["", " " , "x" * 201]:
         assert client.post("/tasks/1/edit", data={"title": title}).status_code == 400
     assert "Новое название" in client.get("/").text
+
+def test_delete_only_selected_task(client):
+    client.post("/tasks", data={"title": "Удалить эту"})
+    client.post("/tasks", data={"title": "Оставить эту"})
+    assert client.post("/tasks/1/delete").status_code == 302
+    html = client.get("/").text
+    assert "Удалить эту" not in html and "Оставить эту" in html
+    assert client.get("/tasks/2/delete").status_code == 405
