@@ -13,7 +13,7 @@ def create_app(config=None):
         if not title.strip():
             abort(400)
         nonlocal next_id
-        tasks.append({"id": next_id, "title": request.form["title"], "done": False})
+        tasks.append({"id": next_id, "title": title.strip(), "done": False})
         next_id += 1
         return redirect("/")
 

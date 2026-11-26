@@ -1,0 +1,12 @@
+diff --git a/todo/__init__.py b/todo/__init__.py
+index 60c18ac..82ba1c4 100644
+--- a/todo/__init__.py
++++ b/todo/__init__.py
+@@ -13,7 +13,7 @@ def create_app(config=None):
+         if not title.strip():
+             abort(400)
+         nonlocal next_id
+-        tasks.append({"id": next_id, "title": request.form["title"], "done": False})
++        tasks.append({"id": next_id, "title": title.strip(), "done": False})
+         next_id += 1
+         return redirect("/")
