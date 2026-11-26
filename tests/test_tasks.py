@@ -41,3 +41,10 @@ def test_reopen_task(client):
     client.post("/tasks/1/toggle")
     client.post("/tasks/1/toggle")
     assert 'data-done="0"' in client.get("/").text
+
+def test_edit_form(client):
+    client.post("/tasks", data={"title": "Старое название"})
+    response = client.get("/tasks/1/edit")
+    assert response.status_code == 200
+    assert 'value="Старое название"' in response.text
+    assert 'action="/tasks/1/edit"' in response.text

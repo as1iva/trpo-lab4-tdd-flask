@@ -1,0 +1,13 @@
+$ python -m pytest -q --tb=short
+........F                                                                [100%]
+=================================== FAILURES ===================================
+________________________________ test_edit_form ________________________________
+tests/test_tasks.py:48: in test_edit_form
+    assert response.status_code == 200
+E   assert 404 == 200
+E    +  where 404 = <WrapperTestResponse streamed [404 NOT FOUND]>.status_code
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_edit_form - assert 404 == 200
+1 failed, 8 passed in 0.05s
+
+EXIT_CODE=1

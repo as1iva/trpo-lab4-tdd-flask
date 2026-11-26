@@ -106,5 +106,23 @@
     "red_summary": "1 failed, 6 passed in 0.04s",
     "green_summary": "7 passed in 0.02s",
     "refactor_summary": "7 passed in 0.02s"
+  },
+  {
+    "iteration": 7,
+    "title": "reopen task",
+    "test": "def test_reopen_task(client):\n    client.post(\"/tasks\", data={\"title\": \"Повторить материал\"})\n    client.post(\"/tasks/1/toggle\")\n    client.post(\"/tasks/1/toggle\")\n    assert 'data-done=\"0\"' in client.get(\"/\").text",
+    "description": [
+      "Тест дважды меняет статус и ожидает активную задачу. Ранее повторное нажатие оставляло done=True.",
+      "Операция завершения заменена инверсией bool.",
+      "Подпись кнопки приведена в соответствие текущему состоянию."
+    ],
+    "started_utc": "2026-11-26T12:27:35.091990+00:00",
+    "duration_seconds": 0.88,
+    "red_commit": "1ac1d68ae1125ad2f4ba739dbc0eadf02d165cf4",
+    "green_commit": "bdf27bf977c4e1a4e181dde053b880839ee790cd",
+    "refactor_commit": "32ea9d00a40854bdb3d9978d53ddafba6161e00a",
+    "red_summary": "1 failed, 7 passed in 0.04s",
+    "green_summary": "8 passed in 0.02s",
+    "refactor_summary": "8 passed in 0.02s"
   }
 ]
