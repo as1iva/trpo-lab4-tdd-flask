@@ -1,0 +1,17 @@
+diff --git a/todo/__init__.py b/todo/__init__.py
+index 7b4904e..0e87c26 100644
+--- a/todo/__init__.py
++++ b/todo/__init__.py
+@@ -19,9 +19,12 @@ def create_app(config=None):
+         next_id += 1
+         return redirect("/")
+ 
++    def find_task(task_id):
++        return next(t for t in tasks if t["id"] == task_id)
++
+     @app.post("/tasks/<int:task_id>/toggle")
+     def toggle_task(task_id):
+-        task = next(t for t in tasks if t["id"] == task_id)
++        task = find_task(task_id)
+         task["done"] = True
+         return redirect("/")
