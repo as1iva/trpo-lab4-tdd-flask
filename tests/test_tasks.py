@@ -86,7 +86,7 @@ def test_status_filters(client):
 
 def test_persistence_across_app_instances(tmp_path):
     from todo import create_app
-    config = {"TESTING": True, "DATABASE": str(tmp_path / "persistent.sqlite3")}
+    config = {"TESTING": True, "CSRF_ENABLED": False, "DATABASE": str(tmp_path / "persistent.sqlite3")}
     first = create_app(config).test_client()
     first.post("/tasks", data={"title": "Пережить перезапуск"})
     first.post("/tasks/1/toggle")

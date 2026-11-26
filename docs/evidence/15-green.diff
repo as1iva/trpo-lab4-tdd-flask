@@ -1,0 +1,86 @@
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 21097fa..ec1fa1c 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -4,7 +4,7 @@ from todo import create_app
+ 
+ @pytest.fixture
+ def app(tmp_path):
+-    return create_app({"TESTING": True, "DATABASE": str(tmp_path / "test.sqlite3")})
++    return create_app({"TESTING": True, "CSRF_ENABLED": False, "DATABASE": str(tmp_path / "test.sqlite3")})
+ 
+ 
+ @pytest.fixture
+diff --git a/tests/test_tasks.py b/tests/test_tasks.py
+index e7440ab..6f715cd 100644
+--- a/tests/test_tasks.py
++++ b/tests/test_tasks.py
+@@ -86,7 +86,7 @@ def test_status_filters(client):
+ 
+ def test_persistence_across_app_instances(tmp_path):
+     from todo import create_app
+-    config = {"TESTING": True, "DATABASE": str(tmp_path / "persistent.sqlite3")}
++    config = {"TESTING": True, "CSRF_ENABLED": False, "DATABASE": str(tmp_path / "persistent.sqlite3")}
+     first = create_app(config).test_client()
+     first.post("/tasks", data={"title": "Пережить перезапуск"})
+     first.post("/tasks/1/toggle")
+diff --git a/todo/__init__.py b/todo/__init__.py
+index 545b7ce..d260587 100644
+--- a/todo/__init__.py
++++ b/todo/__init__.py
+@@ -1,18 +1,33 @@
+ from .db import connect, init_db
+ from pathlib import Path
+-from flask import Flask, render_template, request, redirect, abort
++import secrets
++import hmac
++from flask import Flask, render_template, request, redirect, abort, session
+ 
+ MAX_TITLE_LENGTH = 200
+ 
+ 
+ def create_app(config=None):
+     app = Flask(__name__, instance_relative_config=True)
+-    app.config.from_mapping(DATABASE=str(Path(app.instance_path) / "tasks.sqlite3"))
++    app.config.from_mapping(SECRET_KEY=secrets.token_hex(32), CSRF_ENABLED=True, DATABASE=str(Path(app.instance_path) / "tasks.sqlite3"))
+     app.config.update(config or {})
+     Path(app.config["DATABASE"]).parent.mkdir(parents=True, exist_ok=True)
+     with app.app_context():
+         init_db()
+ 
++    @app.before_request
++    def protect_forms():
++        if "csrf_token" not in session:
++            session["csrf_token"] = secrets.token_hex(32)
++        if request.method == "POST" and app.config["CSRF_ENABLED"]:
++            supplied = request.form.get("csrf_token", "")
++            if not hmac.compare_digest(supplied, session["csrf_token"]):
++                abort(400, description="Неверный CSRF токен")
++
++    @app.context_processor
++    def csrf_context():
++        return {"csrf_token": session.get("csrf_token", "")}
++
+     def validated_title():
+         title = request.form.get("title", "").strip()
+         if not title or len(title) > MAX_TITLE_LENGTH:
+diff --git a/todo/templates/edit.html b/todo/templates/edit.html
+index 0b76321..cecca47 100644
+--- a/todo/templates/edit.html
++++ b/todo/templates/edit.html
+@@ -1 +1 @@
+-<h1>Изменить задачу</h1><form method="post" action="/tasks/{{ task.id }}/edit"><label>Название <input name="title" value="{{ task.title }}"></label><button>Сохранить</button></form>
++<h1>Изменить задачу</h1><form method="post" action="/tasks/{{ task.id }}/edit"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Название <input name="title" value="{{ task.title }}"></label><button>Сохранить</button></form>
+diff --git a/todo/templates/index.html b/todo/templates/index.html
+index 0d32395..ee61424 100644
+--- a/todo/templates/index.html
++++ b/todo/templates/index.html
+@@ -1,6 +1,6 @@
+ <h1>Мои задачи</h1>
+ <nav><a href="/?status=all">Все</a> <a href="/?status=active">Активные</a> <a href="/?status=completed">Выполненные</a></nav>
+ <form method="get"><label>Поиск <input name="q" value="{{ query }}"></label><button>Найти</button></form>
+-<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>
+-{% for task in tasks %}<article data-id="{{ task.id }}" data-done="{{ task.done|int }}"><span>{{ task.title }}</span><a href="/tasks/{{ task.id }}/edit">Изменить</a><form method="post" action="/tasks/{{ task.id }}/toggle"><button>{{ "Вернуть" if task.done else "Выполнить" }}</button></form><form method="post" action="/tasks/{{ task.id }}/delete"><button>Удалить</button></form></article>
++<form method="post" action="/tasks"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Название <input name="title"></label><button>Добавить</button></form>
++{% for task in tasks %}<article data-id="{{ task.id }}" data-done="{{ task.done|int }}"><span>{{ task.title }}</span><a href="/tasks/{{ task.id }}/edit">Изменить</a><form method="post" action="/tasks/{{ task.id }}/toggle"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button>{{ "Вернуть" if task.done else "Выполнить" }}</button></form><form method="post" action="/tasks/{{ task.id }}/delete"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button>Удалить</button></form></article>
+ {% else %}<p>Задач пока нет</p>{% endfor %}

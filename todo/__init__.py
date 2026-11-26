@@ -1,17 +1,32 @@
 from .db import connect, init_db
 from pathlib import Path
-from flask import Flask, render_template, request, redirect, abort
+import secrets
+import hmac
+from flask import Flask, render_template, request, redirect, abort, session
 
 MAX_TITLE_LENGTH = 200
 
 
 def create_app(config=None):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(DATABASE=str(Path(app.instance_path) / "tasks.sqlite3"))
+    app.config.from_mapping(SECRET_KEY=secrets.token_hex(32), CSRF_ENABLED=True, DATABASE=str(Path(app.instance_path) / "tasks.sqlite3"))
     app.config.update(config or {})
     Path(app.config["DATABASE"]).parent.mkdir(parents=True, exist_ok=True)
     with app.app_context():
         init_db()
+
+    @app.before_request
+    def protect_forms():
+        if "csrf_token" not in session:
+            session["csrf_token"] = secrets.token_hex(32)
+        if request.method == "POST" and app.config["CSRF_ENABLED"]:
+            supplied = request.form.get("csrf_token", "")
+            if not hmac.compare_digest(supplied, session["csrf_token"]):
+                abort(400, description="Неверный CSRF токен")
+
+    @app.context_processor
+    def csrf_context():
+        return {"csrf_token": session.get("csrf_token", "")}
 
     def validated_title():
         title = request.form.get("title", "").strip()

@@ -1,1 +1,1 @@
-<h1>Изменить задачу</h1><form method="post" action="/tasks/{{ task.id }}/edit"><label>Название <input name="title" value="{{ task.title }}"></label><button>Сохранить</button></form>
+<h1>Изменить задачу</h1><form method="post" action="/tasks/{{ task.id }}/edit"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Название <input name="title" value="{{ task.title }}"></label><button>Сохранить</button></form>
