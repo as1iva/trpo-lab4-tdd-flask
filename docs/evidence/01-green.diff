@@ -1,0 +1,13 @@
+diff --git a/todo/__init__.py b/todo/__init__.py
+index 8bfa32c..8407038 100644
+--- a/todo/__init__.py
++++ b/todo/__init__.py
+@@ -4,4 +4,8 @@ from flask import Flask
+ def create_app(config=None):
+     app = Flask(__name__)
+     app.config.update(config or {})
++    @app.get("/")
++    def index():
++        return "<h1>Мои задачи</h1><p>Задач пока нет</p>"
++
+     return app
