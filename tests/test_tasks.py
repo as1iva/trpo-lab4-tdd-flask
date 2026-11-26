@@ -94,3 +94,12 @@ def test_persistence_across_app_instances(tmp_path):
     html = second.get("/").text
     assert "Пережить перезапуск" in html
     assert 'data-done="1"' in html
+
+def test_search_combines_with_status(client):
+    for title in ["Купить хлеб", "Купить молоко", "Читать книгу"]:
+        client.post("/tasks", data={"title": title})
+    client.post("/tasks/1/toggle")
+    html = client.get("/", query_string={"q": "  Купить  ", "status": "active"}).text
+    assert "Купить молоко" in html
+    assert "Купить хлеб" not in html and "Читать книгу" not in html
+    assert "Задач пока нет" in client.get("/", query_string={"q": "несуществующая"}).text

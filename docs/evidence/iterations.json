@@ -214,5 +214,23 @@
     "red_summary": "1 failed, 15 passed in 0.07s",
     "green_summary": "16 passed in 0.05s",
     "refactor_summary": "16 passed in 0.05s"
+  },
+  {
+    "iteration": 13,
+    "title": "persistent SQLite storage",
+    "test": "def test_persistence_across_app_instances(tmp_path):\n    from todo import create_app\n    config = {\"TESTING\": True, \"DATABASE\": str(tmp_path / \"persistent.sqlite3\")}\n    first = create_app(config).test_client()\n    first.post(\"/tasks\", data={\"title\": \"Пережить перезапуск\"})\n    first.post(\"/tasks/1/toggle\")\n    second = create_app(config).test_client()\n    html = second.get(\"/\").text\n    assert \"Пережить перезапуск\" in html\n    assert 'data-done=\"1\"' in html",
+    "description": [
+      "Две фабрики приложения используют один путь к базе. Список в памяти терялся между экземплярами.",
+      "Список заменен SQLite, операции используют параметры SQL и транзакции.",
+      "Соединения и инициализация вынесены в db.py с гарантированным закрытием."
+    ],
+    "started_utc": "2026-11-26T12:27:40.740835+00:00",
+    "duration_seconds": 1.06,
+    "red_commit": "2db9a03b0bd13322ca274c6f2b83ba82fecf9f57",
+    "green_commit": "e053c25ab19396af6190f72df5d726dde2e583e2",
+    "refactor_commit": "0544325bc443edf2a3d16a96d74dba439b997195",
+    "red_summary": "1 failed, 16 passed in 0.08s",
+    "green_summary": "17 passed in 0.07s",
+    "refactor_summary": "17 passed in 0.07s"
   }
 ]
