@@ -1,0 +1,13 @@
+$ python -m pytest -q --tb=short
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________________________ test_home_is_empty ______________________________
+tests/test_tasks.py:6: in test_home_is_empty
+    assert response.status_code == 200
+E   assert 404 == 200
+E    +  where 404 = <WrapperTestResponse streamed [404 NOT FOUND]>.status_code
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_home_is_empty - assert 404 == 200
+1 failed in 0.02s
+
+EXIT_CODE=1
