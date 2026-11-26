@@ -1,0 +1,13 @@
+$ python -m pytest -q --tb=short
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________________ test_create_task _______________________________
+tests/test_tasks.py:11: in test_create_task
+    assert response.status_code == 302
+E   assert 404 == 302
+E    +  where 404 = <WrapperTestResponse streamed [404 NOT FOUND]>.status_code
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_create_task - assert 404 == 302
+1 failed, 1 passed in 0.02s
+
+EXIT_CODE=1

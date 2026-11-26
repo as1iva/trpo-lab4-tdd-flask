@@ -1,0 +1,5 @@
+def test_create_task(client):
+    response = client.post("/tasks", data={"title": "Изучить TDD"})
+    assert response.status_code == 302
+    assert response.headers["Location"] == "/"
+    assert "Изучить TDD" in client.get("/").text

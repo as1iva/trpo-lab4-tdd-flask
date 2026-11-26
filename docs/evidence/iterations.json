@@ -1,0 +1,20 @@
+[
+  {
+    "iteration": 1,
+    "title": "empty list",
+    "test": "def test_home_is_empty(client):\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert \"Задач пока нет\" in response.text",
+    "description": [
+      "Добавлен тест GET / и сообщения пустого списка. Падение: маршрут отсутствовал, HTTP 404.",
+      "Добавлен минимальный маршрут с HTTP 200.",
+      "HTML вынесен в шаблон Jinja, поведение сохранено."
+    ],
+    "started_utc": "2026-11-26T12:27:29.580608+00:00",
+    "duration_seconds": 1.19,
+    "red_commit": "dfe5d0a9884200aed95b614537c6a7f723d7d914",
+    "green_commit": "237eb18f1a8cffbab92f8005183c7605a301a6ba",
+    "refactor_commit": "f550cddb1d73b49420e5662bc43fc2ca045b96a0",
+    "red_summary": "1 failed in 0.02s",
+    "green_summary": "1 passed in 0.01s",
+    "refactor_summary": "1 passed in 0.01s"
+  }
+]
