@@ -250,5 +250,23 @@
     "red_summary": "1 failed, 17 passed in 0.10s",
     "green_summary": "18 passed in 0.09s",
     "refactor_summary": "18 passed in 0.08s"
+  },
+  {
+    "iteration": 15,
+    "title": "CSRF protection",
+    "test": "def test_csrf_required_for_mutations(tmp_path):\n    import re\n    from todo import create_app\n    app = create_app({\"TESTING\": True, \"DATABASE\": str(tmp_path / \"csrf.sqlite3\"), \"SECRET_KEY\": \"test-only-key\", \"CSRF_ENABLED\": True})\n    browser = app.test_client()\n    assert browser.post(\"/tasks\", data={\"title\": \"Защищенная задача\"}).status_code == 400\n    html = browser.get(\"/\").text\n    token = re.search(r'name=\"csrf_token\" value=\"([^\"]+)\"', html).group(1)\n    assert browser.post(\"/tasks\", data={\"title\": \"Защищенная задача\", \"csrf_token\": \"wrong\"}).status_code == 400\n    assert browser.post(\"/tasks\", data={\"title\": \"Защищенная задача\", \"csrf_token\": token}).status_code == 302\n    for path in [\"/tasks/1/edit\", \"/tasks/1/toggle\", \"/tasks/1/delete\"]:\n        assert browser.post(path, data={\"title\": \"Новое\"}).status_code == 400\n    assert \"Защищенная задача\" in browser.get(\"/\").text",
+    "description": [
+      "Проверена блокировка POST без токена и с неверным токеном, а также успех с токеном из формы. Ранее запрос без токена проходил.",
+      "Введены токен сессии, скрытые поля и before_request. Остальные функциональные тесты явно отключают CSRF; отдельный тест включает его.",
+      "Защита форм вынесена в security.py, все тесты повторно выполнены."
+    ],
+    "started_utc": "2026-11-26T12:27:42.883323+00:00",
+    "duration_seconds": 1.14,
+    "red_commit": "1e3de61736af4412f99ca121ec9d60a70f8e8bb0",
+    "green_commit": "95f870cc36f42547e27b8d3aaa0eb6eef8109f3e",
+    "refactor_commit": "789de69d8d27cc5de60a4ddc492c8ba2bf31bca8",
+    "red_summary": "1 failed, 18 passed in 0.11s",
+    "green_summary": "19 passed in 0.10s",
+    "refactor_summary": "19 passed in 0.09s"
   }
 ]

@@ -1,0 +1,47 @@
+a5eeb77 chore: initialize Flask test environment
+dfe5d0a test: RED 01 empty list
+237eb18 feat: GREEN 01 empty list
+f550cdd refactor: 01 empty list
+e928219 test: RED 02 create task
+958990b feat: GREEN 02 create task
+6402996 refactor: 02 create task
+07adc8e test: RED 03 reject empty title
+e6d632f feat: GREEN 03 reject empty title
+f8023e3 refactor: 03 reject empty title
+a520747 test: RED 04 trim title
+58803f7 feat: GREEN 04 trim title
+650ed0c refactor: 04 trim title
+9a14189 test: RED 05 title length limit
+69a1168 feat: GREEN 05 title length limit
+3635732 refactor: 05 title length limit
+e01a49f test: RED 06 complete task
+e589090 feat: GREEN 06 complete task
+4bbed23 refactor: 06 complete task
+1ac1d68 test: RED 07 reopen task
+bdf27bf feat: GREEN 07 reopen task
+32ea9d0 refactor: 07 reopen task
+482fa22 test: RED 08 edit form
+f494498 feat: GREEN 08 edit form
+5c5b835 refactor: 08 edit form
+e8c6683 test: RED 09 save edited task
+c076791 feat: GREEN 09 save edited task
+8532cf5 refactor: 09 save edited task
+0dec4b8 test: RED 10 delete task
+31b9d74 feat: GREEN 10 delete task
+db2c134 refactor: 10 delete task
+c6afada test: RED 11 missing task returns 404
+5ebf568 feat: GREEN 11 missing task returns 404
+8274b08 refactor: 11 missing task returns 404
+0318b4f test: RED 12 filter task status
+f49ff84 feat: GREEN 12 filter task status
+111a3b4 refactor: 12 filter task status
+2db9a03 test: RED 13 persistent SQLite storage
+e053c25 feat: GREEN 13 persistent SQLite storage
+0544325 refactor: 13 persistent SQLite storage
+d198397 test: RED 14 search tasks
+b8142a9 feat: GREEN 14 search tasks
+d717f20 refactor: 14 search tasks
+1e3de61 test: RED 15 CSRF protection
+95f870c feat: GREEN 15 CSRF protection
+789de69 refactor: 15 CSRF protection
+8bf54d0 feat: polish interface and add continuous testing with 31 passing checks

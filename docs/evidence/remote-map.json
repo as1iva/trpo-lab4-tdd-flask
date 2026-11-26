@@ -1,0 +1,232 @@
+[
+  {
+    "local": "a5eeb77a2ddb5ea4bf72fa39e7177a61879b164b",
+    "remote": "0f2da9ee8d812f4f3e2a1aba4a4bd888ef78bd6f",
+    "message": "chore: initialize Flask test environment"
+  },
+  {
+    "local": "dfe5d0a9884200aed95b614537c6a7f723d7d914",
+    "remote": "a0c46a5f05d11698e1f8807c135a5d5faa887dc0",
+    "message": "test: RED 01 empty list"
+  },
+  {
+    "local": "237eb18f1a8cffbab92f8005183c7605a301a6ba",
+    "remote": "f959d80179fe98f723097099bc94657b30347651",
+    "message": "feat: GREEN 01 empty list"
+  },
+  {
+    "local": "f550cddb1d73b49420e5662bc43fc2ca045b96a0",
+    "remote": "e5aa6fef56c5d634a8c2e3bcb16407c17b30ea4a",
+    "message": "refactor: 01 empty list"
+  },
+  {
+    "local": "e92821961ca88f2f8c91524a83a8df871d46c82b",
+    "remote": "348ece69ef8f1093618d4b0874f923517b1dce41",
+    "message": "test: RED 02 create task"
+  },
+  {
+    "local": "958990b7b1166d75ef23567407502ae1560b74c8",
+    "remote": "5a0a44975710d91706035a029a841161392776db",
+    "message": "feat: GREEN 02 create task"
+  },
+  {
+    "local": "64029961168167da16a89076872291a610a3746a",
+    "remote": "bde39d844f90b2e47c1f368ecdeaf445ba663021",
+    "message": "refactor: 02 create task"
+  },
+  {
+    "local": "07adc8eb01741b2301c15b05da055ade42756896",
+    "remote": "fbdb7775c726def957ee537d1b8e643f9edf4f80",
+    "message": "test: RED 03 reject empty title"
+  },
+  {
+    "local": "e6d632fb1200f9aa44a3086798d2232292b20568",
+    "remote": "a14b9266512f8be005f22bdb3087dad1d7d578fb",
+    "message": "feat: GREEN 03 reject empty title"
+  },
+  {
+    "local": "f8023e305d6b6a1d532ae9312cde7ced27288baa",
+    "remote": "9dc5839e73b71dae60d790f1bc22315aceb87d66",
+    "message": "refactor: 03 reject empty title"
+  },
+  {
+    "local": "a52074758760a94107cba5807a348e7471f9b3c9",
+    "remote": "54d2ede647a80c432c717eab2bf7263104f3eb17",
+    "message": "test: RED 04 trim title"
+  },
+  {
+    "local": "58803f72b280cbb3cca7f846fb3895011d7f1f81",
+    "remote": "2c90e95b6c3b5141fcb16a06b8960ffea272dc7c",
+    "message": "feat: GREEN 04 trim title"
+  },
+  {
+    "local": "650ed0c987307fdc0f11f388cf2915cfc78ee491",
+    "remote": "51f23d078f9be7cbbd68ef082625d33f3b786d0d",
+    "message": "refactor: 04 trim title"
+  },
+  {
+    "local": "9a141894045560894b32cc1e756189605ba7ff8a",
+    "remote": "eb8b800da16582318a9414fd18a95b37db142230",
+    "message": "test: RED 05 title length limit"
+  },
+  {
+    "local": "69a1168afcd5c8aabbc44cc2a4a83af145e077b6",
+    "remote": "2237eaa9dbb5d3d4aa54f674b41ce967aefd012c",
+    "message": "feat: GREEN 05 title length limit"
+  },
+  {
+    "local": "36357326065f477072dfd5e2adc9ab1b1a0d5fe1",
+    "remote": "f98cac3f7c3cc80ca6347183d476cc73d611da89",
+    "message": "refactor: 05 title length limit"
+  },
+  {
+    "local": "e01a49fadf4f998e81aad29a6f225bd1e7f68bdd",
+    "remote": "733a06a02e30be1cfd7111f7d084ffcb749ad896",
+    "message": "test: RED 06 complete task"
+  },
+  {
+    "local": "e589090e5f794de03ca10fd4338dc5b4ff4b6453",
+    "remote": "e52fd6a789860e0033856a83d70d088d7ff45ff3",
+    "message": "feat: GREEN 06 complete task"
+  },
+  {
+    "local": "4bbed234ad59c0348107ef006ab583cb98ae0a96",
+    "remote": "21911bb60735fd2bb742a7b0599a93dc77ca6cbe",
+    "message": "refactor: 06 complete task"
+  },
+  {
+    "local": "1ac1d68ae1125ad2f4ba739dbc0eadf02d165cf4",
+    "remote": "1ee8f31e61fd77accbccf9cbab0c169df330fe3c",
+    "message": "test: RED 07 reopen task"
+  },
+  {
+    "local": "bdf27bf977c4e1a4e181dde053b880839ee790cd",
+    "remote": "361f9046e34b09436fb9eebea0719a9b5e823913",
+    "message": "feat: GREEN 07 reopen task"
+  },
+  {
+    "local": "32ea9d00a40854bdb3d9978d53ddafba6161e00a",
+    "remote": "960d299967463d08eae87e18e5eff1f8bdbf4729",
+    "message": "refactor: 07 reopen task"
+  },
+  {
+    "local": "482fa2239fafe02c31a3bc20655e4dfeba5f71d0",
+    "remote": "ce407dfeb260be12aa18dd92f5953f12a54a3b6a",
+    "message": "test: RED 08 edit form"
+  },
+  {
+    "local": "f494498b750ea737624bf695e9b302c35897c7c6",
+    "remote": "b91e94e5d9955c6fb607658b294904e86d05fd27",
+    "message": "feat: GREEN 08 edit form"
+  },
+  {
+    "local": "5c5b835f04bf6578d667977b32d0bba071f1d720",
+    "remote": "073c8623b1b00cb19d0195da88bfa7e37d8c3dd3",
+    "message": "refactor: 08 edit form"
+  },
+  {
+    "local": "e8c668371c81aa156ff53f65a884aab84a03e6b0",
+    "remote": "cc6e33c8eb86191e3b23fe74a1be8ea1a1efa149",
+    "message": "test: RED 09 save edited task"
+  },
+  {
+    "local": "c0767912dd941c242625101551eb81af6f5b73ae",
+    "remote": "623aeee2dc1a7acc3ae09068dd506997ffc4a0cc",
+    "message": "feat: GREEN 09 save edited task"
+  },
+  {
+    "local": "8532cf543e946292aa84f4c19527eb1a73926c93",
+    "remote": "30fcece9d6ad184c47e89e9b94c67dae5fbb8bd8",
+    "message": "refactor: 09 save edited task"
+  },
+  {
+    "local": "0dec4b8feec6b6f4532b7f8991f1f3c1ce74c46d",
+    "remote": "13584af5ed8d2875147473dc8e6d937abbf0b8ad",
+    "message": "test: RED 10 delete task"
+  },
+  {
+    "local": "31b9d747877b2be67218cb1c51a7d3860832d886",
+    "remote": "468b7d918c93f643877b7b48874d6bff475e8edd",
+    "message": "feat: GREEN 10 delete task"
+  },
+  {
+    "local": "db2c134dae0bb7b4c16236740a1265daa8b857e0",
+    "remote": "af0ba3d0e727a93ac7dce5446c6cf3b8e28e096c",
+    "message": "refactor: 10 delete task"
+  },
+  {
+    "local": "c6afada48d24e5b11d2355f4b15ba5bd89d1c0c7",
+    "remote": "6fda4b8cb765381c0703714894f44c23963fb2b4",
+    "message": "test: RED 11 missing task returns 404"
+  },
+  {
+    "local": "5ebf568edd5a117c4975204ec2bf5807dd9c7d6b",
+    "remote": "c8a2a297f7e7deec1c1473189250ec115354cb4c",
+    "message": "feat: GREEN 11 missing task returns 404"
+  },
+  {
+    "local": "8274b08f8ce1b67c183c044e4ac1e521a49a436f",
+    "remote": "6e832d59822aeecd2d6e244a456d81a3dff0fcc8",
+    "message": "refactor: 11 missing task returns 404"
+  },
+  {
+    "local": "0318b4f69a225225fbb06731ebad841cb6d66b68",
+    "remote": "d3f551f4c8ed922d78e13b0e88bf916ab5eb4a93",
+    "message": "test: RED 12 filter task status"
+  },
+  {
+    "local": "f49ff84bca21c037fd5b5b15bc575933e4d355fd",
+    "remote": "04dec72a106a3251d6ec1a7bc2d6205094264a3e",
+    "message": "feat: GREEN 12 filter task status"
+  },
+  {
+    "local": "111a3b48cd74b34dda22115a75c90353fd297a65",
+    "remote": "94ace261872502666000a882e7b3074d9dfd6610",
+    "message": "refactor: 12 filter task status"
+  },
+  {
+    "local": "2db9a03b0bd13322ca274c6f2b83ba82fecf9f57",
+    "remote": "675c6e6a6085057d9798bcdbe02f7141f4de9a41",
+    "message": "test: RED 13 persistent SQLite storage"
+  },
+  {
+    "local": "e053c25ab19396af6190f72df5d726dde2e583e2",
+    "remote": "e09d5840e0486a1e5326ea5fda623782fbd625d0",
+    "message": "feat: GREEN 13 persistent SQLite storage"
+  },
+  {
+    "local": "0544325bc443edf2a3d16a96d74dba439b997195",
+    "remote": "fcc41dd44aee9cf7c75531679c0831b9fb1e8d09",
+    "message": "refactor: 13 persistent SQLite storage"
+  },
+  {
+    "local": "d1983973891ec4f07916aae272d0a73f5e765ac5",
+    "remote": "9c499c0bed62b4c38ee6fd00dc1ede72e5095cf8",
+    "message": "test: RED 14 search tasks"
+  },
+  {
+    "local": "b8142a9b145001541ebc2c6a8a865afab4223658",
+    "remote": "4a9b9131e5ee477d4be504e88add5fe4608fa674",
+    "message": "feat: GREEN 14 search tasks"
+  },
+  {
+    "local": "d717f202205a2fca61a4eb042797d97803a3f916",
+    "remote": "4b2153a73ba60c960be73a4e59320538344e6d42",
+    "message": "refactor: 14 search tasks"
+  },
+  {
+    "local": "1e3de61736af4412f99ca121ec9d60a70f8e8bb0",
+    "remote": "2bf95bff4dc118b1623f198f441df7ca761bee5e",
+    "message": "test: RED 15 CSRF protection"
+  },
+  {
+    "local": "95f870cc36f42547e27b8d3aaa0eb6eef8109f3e",
+    "remote": "94c3427ec317b3ad1b1643690b672ad16d38a1b1",
+    "message": "feat: GREEN 15 CSRF protection"
+  },
+  {
+    "local": "789de69d8d27cc5de60a4ddc492c8ba2bf31bca8",
+    "remote": "0f2649497dcf3da14fbcd8a67e10f006268cc56e",
+    "message": "refactor: 15 CSRF protection"
+  }
+]

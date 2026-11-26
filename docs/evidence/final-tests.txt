@@ -1,0 +1,26 @@
+$ python -m pytest --cov=todo --cov-branch --cov-report=term-missing --cov-report=xml --cov-fail-under=95 --junitxml=test-results.xml
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-9.2.0, pluggy-1.7.0
+rootdir: <project>
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-7.1.0
+collected 31 items
+
+tests/test_integration.py ............                                   [ 38%]
+tests/test_tasks.py ...................                                  [100%]
+
+- generated xml file: <project>/test-results.xml -
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.6-final-0 _______________
+
+Name               Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------
+todo/__init__.py      73      0     10      0   100%
+todo/db.py            14      0      0      0   100%
+todo/security.py      15      0      6      0   100%
+--------------------------------------------------------------
+TOTAL                102      0     16      0   100%
+Coverage XML written to file coverage.xml
+Required test coverage of 95% reached. Total coverage: 100.00%
+============================== 31 passed in 0.28s ==============================

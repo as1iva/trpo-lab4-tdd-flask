@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<section class="intro"><p class="eyebrow">Ошибка {{ error.code }}</p><h1>{{ 'Задача не найдена' if error.code == 404 else 'Проверьте запрос' }}</h1><p>{{ error.description }}</p><a class="button" href="/">К списку задач</a></section>{% endblock %}

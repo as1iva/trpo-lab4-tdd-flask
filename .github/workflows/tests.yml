@@ -1,0 +1,22 @@
+name: Tests
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest --cov=todo --cov-branch --cov-report=term-missing --cov-report=xml --cov-fail-under=95 --junitxml=test-results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: results-${{ matrix.python-version }}
+          path: |
+            test-results.xml
+            coverage.xml
