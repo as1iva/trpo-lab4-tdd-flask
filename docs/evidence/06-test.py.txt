@@ -1,0 +1,5 @@
+def test_complete_task(client):
+    client.post("/tasks", data={"title": "Сдать работу"})
+    assert 'data-done="0"' in client.get("/").text
+    assert client.post("/tasks/1/toggle").status_code == 302
+    assert 'data-done="1"' in client.get("/").text

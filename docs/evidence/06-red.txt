@@ -1,0 +1,15 @@
+$ python -m pytest -q --tb=short
+......F                                                                  [100%]
+=================================== FAILURES ===================================
+______________________________ test_complete_task ______________________________
+tests/test_tasks.py:35: in test_complete_task
+    assert 'data-done="0"' in client.get("/").text
+E   assert 'data-done="0"' in '<h1>Мои задачи</h1>\n<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>\n<article data-id="1"><span>Сдать работу</span></article>\n'
+E    +  where '<h1>Мои задачи</h1>\n<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>\n<article data-id="1"><span>Сдать работу</span></article>\n' = <WrapperTestResponse 226 bytes [200 OK]>.text
+E    +    where <WrapperTestResponse 226 bytes [200 OK]> = get('/')
+E    +      where get = <FlaskClient <Flask 'todo'>>.get
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_complete_task - assert 'data-done="0"' in '<...
+1 failed, 6 passed in 0.04s
+
+EXIT_CODE=1

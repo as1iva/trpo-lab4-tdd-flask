@@ -29,3 +29,9 @@ def test_title_length_boundary(client):
     assert "Задач пока нет" in client.get("/").text
     assert client.post("/tasks", data={"title": "я" * 200}).status_code == 302
     assert "я" * 200 in client.get("/").text
+
+def test_complete_task(client):
+    client.post("/tasks", data={"title": "Сдать работу"})
+    assert 'data-done="0"' in client.get("/").text
+    assert client.post("/tasks/1/toggle").status_code == 302
+    assert 'data-done="1"' in client.get("/").text

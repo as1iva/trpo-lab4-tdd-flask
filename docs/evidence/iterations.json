@@ -70,5 +70,23 @@
     "red_summary": "1 failed, 4 passed in 0.03s",
     "green_summary": "5 passed in 0.02s",
     "refactor_summary": "5 passed in 0.02s"
+  },
+  {
+    "iteration": 5,
+    "title": "title length limit",
+    "test": "def test_title_length_boundary(client):\n    assert client.post(\"/tasks\", data={\"title\": \"я\" * 201}).status_code == 400\n    assert \"Задач пока нет\" in client.get(\"/\").text\n    assert client.post(\"/tasks\", data={\"title\": \"я\" * 200}).status_code == 302\n    assert \"я\" * 200 in client.get(\"/\").text",
+    "description": [
+      "Тест проверяет границы 201 и 200 символов и отсутствие записи при ошибке.",
+      "Введено ограничение в 200 символов.",
+      "Граничное значение вынесено в именованную константу."
+    ],
+    "started_utc": "2026-11-26T12:27:33.326052+00:00",
+    "duration_seconds": 0.88,
+    "red_commit": "9a141894045560894b32cc1e756189605ba7ff8a",
+    "green_commit": "69a1168afcd5c8aabbc44cc2a4a83af145e077b6",
+    "refactor_commit": "36357326065f477072dfd5e2adc9ab1b1a0d5fe1",
+    "red_summary": "1 failed, 5 passed in 0.04s",
+    "green_summary": "6 passed in 0.02s",
+    "refactor_summary": "6 passed in 0.02s"
   }
 ]
