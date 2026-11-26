@@ -1,0 +1,183 @@
+$ python -m pytest -q --tb=short
+...........FFFF                                                          [100%]
+=================================== FAILURES ===================================
+____________________ test_missing_task[get-/tasks/999/edit] ____________________
+tests/test_tasks.py:74: in test_missing_task
+    assert getattr(client, method)(path, data={"title": "Название"}).status_code == 404
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1166: in get
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/testing.py:235: in open
+    response = super().open(
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1536: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1514: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1511: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:919: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:917: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:902: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+todo/__init__.py:43: in edit_task
+    return render_template("edit.html", task=find_task(task_id))
+                                             ^^^^^^^^^^^^^^^^^^
+todo/__init__.py:27: in find_task
+    return next(t for t in tasks if t["id"] == task_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   StopIteration
+___________________ test_missing_task[post-/tasks/999/edit] ____________________
+tests/test_tasks.py:74: in test_missing_task
+    assert getattr(client, method)(path, data={"title": "Название"}).status_code == 404
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1171: in post
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/testing.py:235: in open
+    response = super().open(
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1536: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1514: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1511: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:919: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:917: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:902: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+todo/__init__.py:37: in save_task
+    task = find_task(task_id)
+           ^^^^^^^^^^^^^^^^^^
+todo/__init__.py:27: in find_task
+    return next(t for t in tasks if t["id"] == task_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   StopIteration
+__________________ test_missing_task[post-/tasks/999/toggle] ___________________
+tests/test_tasks.py:74: in test_missing_task
+    assert getattr(client, method)(path, data={"title": "Название"}).status_code == 404
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1171: in post
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/testing.py:235: in open
+    response = super().open(
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1536: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1514: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1511: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:919: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:917: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:902: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+todo/__init__.py:31: in toggle_task
+    task = find_task(task_id)
+           ^^^^^^^^^^^^^^^^^^
+todo/__init__.py:27: in find_task
+    return next(t for t in tasks if t["id"] == task_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   StopIteration
+__________________ test_missing_task[post-/tasks/999/delete] ___________________
+tests/test_tasks.py:74: in test_missing_task
+    assert getattr(client, method)(path, data={"title": "Название"}).status_code == 404
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1171: in post
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/testing.py:235: in open
+    response = super().open(
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/werkzeug/test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1536: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1514: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:1511: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:919: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:917: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+../../work/venv/lib/python3.14/site-packages/flask/app.py:902: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+todo/__init__.py:47: in delete_task
+    tasks.remove(find_task(task_id))
+                 ^^^^^^^^^^^^^^^^^^
+todo/__init__.py:27: in find_task
+    return next(t for t in tasks if t["id"] == task_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   StopIteration
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_missing_task[get-/tasks/999/edit] - StopIter...
+FAILED tests/test_tasks.py::test_missing_task[post-/tasks/999/edit] - StopIte...
+FAILED tests/test_tasks.py::test_missing_task[post-/tasks/999/toggle] - StopI...
+FAILED tests/test_tasks.py::test_missing_task[post-/tasks/999/delete] - StopI...
+4 failed, 11 passed in 0.13s
+
+EXIT_CODE=1

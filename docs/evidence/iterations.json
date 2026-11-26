@@ -160,5 +160,23 @@
     "red_summary": "1 failed, 9 passed in 0.05s",
     "green_summary": "10 passed in 0.03s",
     "refactor_summary": "10 passed in 0.03s"
+  },
+  {
+    "iteration": 10,
+    "title": "delete task",
+    "test": "def test_delete_only_selected_task(client):\n    client.post(\"/tasks\", data={\"title\": \"Удалить эту\"})\n    client.post(\"/tasks\", data={\"title\": \"Оставить эту\"})\n    assert client.post(\"/tasks/1/delete\").status_code == 302\n    html = client.get(\"/\").text\n    assert \"Удалить эту\" not in html and \"Оставить эту\" in html\n    assert client.get(\"/tasks/2/delete\").status_code == 405",
+    "description": [
+      "Проверены удаление выбранной записи, сохранность другой и запрет удаления через GET.",
+      "Добавлен маршрут удаления только методом POST.",
+      "Кнопка удаления добавлена в шаблон рядом с действиями задачи."
+    ],
+    "started_utc": "2026-11-26T12:27:37.792642+00:00",
+    "duration_seconds": 0.94,
+    "red_commit": "0dec4b8feec6b6f4532b7f8991f1f3c1ce74c46d",
+    "green_commit": "31b9d747877b2be67218cb1c51a7d3860832d886",
+    "refactor_commit": "db2c134dae0bb7b4c16236740a1265daa8b857e0",
+    "red_summary": "1 failed, 10 passed in 0.06s",
+    "green_summary": "11 passed in 0.04s",
+    "refactor_summary": "11 passed in 0.04s"
   }
 ]

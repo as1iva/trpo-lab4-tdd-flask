@@ -68,3 +68,7 @@ def test_delete_only_selected_task(client):
     html = client.get("/").text
     assert "Удалить эту" not in html and "Оставить эту" in html
     assert client.get("/tasks/2/delete").status_code == 405
+
+@pytest.mark.parametrize("method,path", [("get", "/tasks/999/edit"), ("post", "/tasks/999/edit"), ("post", "/tasks/999/toggle"), ("post", "/tasks/999/delete")])
+def test_missing_task(client, method, path):
+    assert getattr(client, method)(path, data={"title": "Название"}).status_code == 404
