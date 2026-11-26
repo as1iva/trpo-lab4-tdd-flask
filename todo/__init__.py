@@ -52,6 +52,12 @@ def create_app(config=None):
 
     @app.get("/")
     def index():
-        return render_template("index.html", tasks=tasks)
+        status = request.args.get("status", "all")
+        if status not in ("all", "active", "completed"):
+            abort(400)
+        visible = tasks
+        if status != "all":
+            visible = [t for t in tasks if t["done"] == (status == "completed")]
+        return render_template("index.html", tasks=visible)
 
     return app
