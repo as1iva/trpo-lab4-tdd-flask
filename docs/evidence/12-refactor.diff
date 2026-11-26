@@ -1,0 +1,10 @@
+diff --git a/todo/templates/index.html b/todo/templates/index.html
+index 5ea7a14..c69ae04 100644
+--- a/todo/templates/index.html
++++ b/todo/templates/index.html
+@@ -1,4 +1,5 @@
+ <h1>Мои задачи</h1>
++<nav><a href="/?status=all">Все</a> <a href="/?status=active">Активные</a> <a href="/?status=completed">Выполненные</a></nav>
+ <form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>
+ {% for task in tasks %}<article data-id="{{ task.id }}" data-done="{{ task.done|int }}"><span>{{ task.title }}</span><a href="/tasks/{{ task.id }}/edit">Изменить</a><form method="post" action="/tasks/{{ task.id }}/toggle"><button>{{ "Вернуть" if task.done else "Выполнить" }}</button></form><form method="post" action="/tasks/{{ task.id }}/delete"><button>Удалить</button></form></article>
+ {% else %}<p>Задач пока нет</p>{% endfor %}
