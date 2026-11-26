@@ -72,3 +72,14 @@ def test_delete_only_selected_task(client):
 @pytest.mark.parametrize("method,path", [("get", "/tasks/999/edit"), ("post", "/tasks/999/edit"), ("post", "/tasks/999/toggle"), ("post", "/tasks/999/delete")])
 def test_missing_task(client, method, path):
     assert getattr(client, method)(path, data={"title": "Название"}).status_code == 404
+
+def test_status_filters(client):
+    client.post("/tasks", data={"title": "Активная запись"})
+    client.post("/tasks", data={"title": "Завершенная запись"})
+    client.post("/tasks/2/toggle")
+    active = client.get("/?status=active").text
+    completed = client.get("/?status=completed").text
+    assert "Активная запись" in active and "Завершенная запись" not in active
+    assert "Завершенная запись" in completed and "Активная запись" not in completed
+    assert "Активная запись" in client.get("/?status=all").text
+    assert client.get("/?status=unknown").status_code == 400

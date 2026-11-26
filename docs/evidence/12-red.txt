@@ -1,0 +1,17 @@
+$ python -m pytest -q --tb=short
+...............F                                                         [100%]
+=================================== FAILURES ===================================
+_____________________________ test_status_filters ______________________________
+tests/test_tasks.py:82: in test_status_filters
+    assert "Активная запись" in active and "Завершенная запись" not in active
+E   assert ('Активная запись' in '<h1>Мои задачи</h1>\n<form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить...button>Вернуть</button></form><form method="post" action="/tasks/2/delete"><button>Удалить</button></form></article>\n' and 'Завершенная запись' not in '<h1>Мои зад...</article>\n'
+E     
+E     'Завершенная запись' is contained here:
+E     ?           ^^^^^^^^^
+E       "1"><span>Завершенная запись</span><a href="/tasks/2/edit">Изменить</a><form method="post" action="/tasks/2/toggle"><button>Вернуть</button></form><form method="post" action="/tasks/2/delete"><button>Удалить</button></form></article>
+E     ?           ^^^^^^^^^^^^^^^^^^^^^^^^^^^)
+=========================== short test summary info ============================
+FAILED tests/test_tasks.py::test_status_filters - assert ('Активная запись' i...
+1 failed, 15 passed in 0.07s
+
+EXIT_CODE=1

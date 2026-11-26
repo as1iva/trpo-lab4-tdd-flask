@@ -178,5 +178,23 @@
     "red_summary": "1 failed, 10 passed in 0.06s",
     "green_summary": "11 passed in 0.04s",
     "refactor_summary": "11 passed in 0.04s"
+  },
+  {
+    "iteration": 11,
+    "title": "missing task returns 404",
+    "test": "@pytest.mark.parametrize(\"method,path\", [(\"get\", \"/tasks/999/edit\"), (\"post\", \"/tasks/999/edit\"), (\"post\", \"/tasks/999/toggle\"), (\"post\", \"/tasks/999/delete\")])\ndef test_missing_task(client, method, path):\n    assert getattr(client, method)(path, data={\"title\": \"Название\"}).status_code == 404",
+    "description": [
+      "Четыре случая проверяют отсутствующую запись. Ранее возникал StopIteration.",
+      "find_task теперь возвращает HTTP 404 вместо исключения сервера.",
+      "Добавлено единое понятное описание ошибки."
+    ],
+    "started_utc": "2026-11-26T12:27:38.735087+00:00",
+    "duration_seconds": 1.03,
+    "red_commit": "c6afada48d24e5b11d2355f4b15ba5bd89d1c0c7",
+    "green_commit": "5ebf568edd5a117c4975204ec2bf5807dd9c7d6b",
+    "refactor_commit": "8274b08f8ce1b67c183c044e4ac1e521a49a436f",
+    "red_summary": "4 failed, 11 passed in 0.13s",
+    "green_summary": "15 passed in 0.05s",
+    "refactor_summary": "15 passed in 0.05s"
   }
 ]
