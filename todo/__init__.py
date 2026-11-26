@@ -19,6 +19,12 @@ def create_app(config=None):
         next_id += 1
         return redirect("/")
 
+    @app.post("/tasks/<int:task_id>/toggle")
+    def toggle_task(task_id):
+        task = next(t for t in tasks if t["id"] == task_id)
+        task["done"] = True
+        return redirect("/")
+
     @app.get("/")
     def index():
         return render_template("index.html", tasks=tasks)

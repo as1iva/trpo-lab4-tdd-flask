@@ -1,4 +1,4 @@
 <h1>Мои задачи</h1>
 <form method="post" action="/tasks"><label>Название <input name="title"></label><button>Добавить</button></form>
-{% for task in tasks %}<article data-id="{{ task.id }}"><span>{{ task.title }}</span></article>
+{% for task in tasks %}<article data-id="{{ task.id }}" data-done="{{ task.done|int }}"><span>{{ task.title }}</span><form method="post" action="/tasks/{{ task.id }}/toggle"><button>Выполнить</button></form></article>
 {% else %}<p>Задач пока нет</p>{% endfor %}
