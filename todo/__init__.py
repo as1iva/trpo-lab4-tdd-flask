@@ -10,7 +10,7 @@ def create_app(config=None):
     @app.post("/tasks")
     def create_task():
         title = request.form.get("title", "").strip()
-        if not title:
+        if not title or len(title) > 200:
             abort(400)
         nonlocal next_id
         tasks.append({"id": next_id, "title": title, "done": False})
