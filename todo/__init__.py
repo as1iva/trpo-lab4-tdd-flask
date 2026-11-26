@@ -26,7 +26,7 @@ def create_app(config=None):
     def find_task(task_id):
         task = next((t for t in tasks if t["id"] == task_id), None)
         if task is None:
-            abort(404)
+            abort(404, description="Задача не найдена")
         return task
 
     @app.post("/tasks/<int:task_id>/toggle")
